@@ -656,3 +656,13 @@ async for chunk in api.local_search_streaming(config, ...):
   │ LLM 生成               │ 主力 LLM                    │ local_search.completion_model_id:     │ VRAM bound                             │
   │                        │                             │ local_llm                             │                                        │
   └────────────────────────┴─────────────────────────────┴───────────────────────────────────────┴────────────────────────────────────────┘
+  - one-shot：部分支持
+    有单轮查询模式（basic_search/local_search/global_search），但没有名为 one-shot 的独立算法开关。入口见 api/query.py:454。
+  - hyde：支持（在 DRIFT primer）
+    明确有 HyDE 式 query expansion：expand_query -> embed。见 primer.py:70。
+  - recomp：不支持（未发现对应实现/术语）
+    仓库里没有 query 侧 recomp 方法或配置项。
+  - multistep：支持（DRIFT）
+    DRIFT 是多步迭代流程，受 n_depth、drift_k_followups 控制。见 search.py:242 和 drift_search_config.py:11。
+  - igr：不支持（未发现对应实现/术语）
+    repo 中无 igr 命名的方法、配置或模块。
